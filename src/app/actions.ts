@@ -32,20 +32,14 @@ export async function joinQuestAction(questId: string) {
 
 export async function createQuestAction(input: {
   title: string;
-  type: string;
   pointsReward: number;
   isDaily: boolean;
   question?: string;
   optionA?: string;
   optionB?: string;
-  optionC?: string;
-  optionD?: string;
   correctAnswer?: string;
-  followAccounts?: string;
-  likeItems?: string;
-  recastItems?: string;
-  checklist?: string;
-  castText?: string;
+  minimumFund?: string;
+  maxParticipants?: number;
 }) {
   try {
     return await createQuest(input);

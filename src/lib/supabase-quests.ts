@@ -11,26 +11,14 @@ export type QuestRow = {
   is_active: boolean;
 };
 
-export type QuestTaskItem = {
-  label: string;
-  url?: string;
-};
-
-export type QuizOption = {
-  key: string;
-  text: string;
-};
-
 export type QuestViewModel = QuestRow & {
   meta: {
     question?: string;
-    options?: QuizOption[];
+    optionA?: string;
+    optionB?: string;
     correctAnswer?: string;
-    followAccounts?: QuestTaskItem[];
-    likeItems?: QuestTaskItem[];
-    recastItems?: QuestTaskItem[];
-    checklist?: QuestTaskItem[];
-    castText?: string;
+    minimumFund?: string;
+    maxParticipants?: number;
   };
 };
 

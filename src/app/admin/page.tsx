@@ -6,9 +6,9 @@ export default function AdminPage() {
     <div className="space-y-4">
       <SectionCard className="p-5">
         <p className="text-sm text-zinc-400">Admin</p>
-        <h2 className="mt-1 text-2xl font-bold">Create custom quests.</h2>
+        <h2 className="mt-1 text-2xl font-bold">Create two-answer quiz quests.</h2>
         <p className="mt-2 text-sm text-zinc-300">
-          Build quiz quests, social checklist quests, or mixed quests directly from the app.
+          Each quest contains one question, two answers, a correct answer, minimum fund, and participant limit.
         </p>
       </SectionCard>
       <SectionCard>
