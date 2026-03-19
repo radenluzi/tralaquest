@@ -42,7 +42,7 @@ export async function runSupabaseDailyCheckin() {
   if (existing) {
     return {
       ok: false,
-      message: "Geus check-in poe ieu.",
+      message: "You already checked in today.",
     };
   }
 
@@ -78,6 +78,6 @@ export async function runSupabaseDailyCheckin() {
 
   return {
     ok: true,
-    message: "Check-in hasil make Supabase.",
+    message: "Check-in successful. Your points have been updated.",
   };
 }

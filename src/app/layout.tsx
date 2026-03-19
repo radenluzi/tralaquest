@@ -15,15 +15,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tralala Daily Quest",
-  description: "Mini app daily check-in + quest + point keur Farcaster.",
+  description: "Daily check-in, quests, points, and leaderboard mini app for Farcaster.",
 };
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/daily", label: "Daily" },
-  { href: "/quests", label: "Quest" },
+  { href: "/quests", label: "Quests" },
   { href: "/ranking", label: "Ranking" },
-  { href: "/points", label: "Point" },
+  { href: "/points", label: "Points" },
   { href: "/convert", label: "Convert" },
 ];
 
@@ -48,7 +48,7 @@ export default function RootLayout({
                 <h1 className="text-xl font-bold">Tralala Daily Quest</h1>
               </div>
               <div className="rounded-2xl bg-cyan-400/15 px-3 py-1 text-xs font-medium text-cyan-200">
-                MVP Gratis
+                MVP Live
               </div>
             </div>
           </header>

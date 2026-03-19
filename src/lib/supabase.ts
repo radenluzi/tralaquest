@@ -24,7 +24,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export function getSupabaseClient() {
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Supabase env can acan di-set. Eusian .env.local heula.");
+    throw new Error("Supabase environment variables are missing. Please fill in .env.local first.");
   }
 
   return createClient(supabaseUrl, supabaseAnonKey);

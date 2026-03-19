@@ -11,7 +11,7 @@ export async function submitDailyCheckin() {
     console.error("daily checkin failed", error);
     return {
       ok: false,
-      message: "Check-in gagal. Cek Supabase / env heula.",
+      message: "Check-in failed. Please verify your Supabase setup.",
     };
   }
 }
@@ -24,7 +24,7 @@ export async function joinQuestAction(questId: string) {
     console.error("join quest failed", error);
     return {
       ok: false,
-      message: "Join quest gagal.",
+      message: "Quest join failed.",
     };
   }
 }

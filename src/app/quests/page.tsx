@@ -9,8 +9,8 @@ export default async function QuestsPage() {
     <div className="space-y-4">
       <SectionCard className="p-5">
         <p className="text-sm text-zinc-400">Quest Board</p>
-        <h2 className="mt-1 text-2xl font-bold">Quest poean keur ngumpulkeun point.</h2>
-        <p className="mt-2 text-sm text-zinc-300">Data quest ayeuna geus dicokot ti Supabase asli.</p>
+        <h2 className="mt-1 text-2xl font-bold">Complete daily quests and earn points.</h2>
+        <p className="mt-2 text-sm text-zinc-300">Quest data is loaded from your live Supabase project.</p>
       </SectionCard>
 
       {quests.map((quest) => (
@@ -22,7 +22,7 @@ export default async function QuestsPage() {
               {quest.description ? <p className="mt-1 text-sm text-zinc-400">{quest.description}</p> : null}
             </div>
             <div className="rounded-2xl bg-cyan-400/15 px-3 py-1 text-sm text-cyan-200">
-              +{quest.points_reward} pt
+              +{quest.points_reward} pts
             </div>
           </div>
           <QuestJoinButton questId={quest.id} />
@@ -31,7 +31,7 @@ export default async function QuestsPage() {
 
       {quests.length === 0 ? (
         <SectionCard>
-          <p className="text-sm text-zinc-300">Can aya quest aktif di database.</p>
+          <p className="text-sm text-zinc-300">No active quests found in the database yet.</p>
         </SectionCard>
       ) : null}
     </div>

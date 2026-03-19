@@ -37,7 +37,7 @@ export async function submitQuestJoin(questId: string) {
   if (existing) {
     return {
       ok: false,
-      message: "Quest ieu geus kungsi dijoin/submitted.",
+      message: "You have already joined or submitted this quest.",
     };
   }
 
@@ -52,6 +52,6 @@ export async function submitQuestJoin(questId: string) {
 
   return {
     ok: true,
-    message: "Quest hasil dijoin.",
+    message: "Quest joined successfully.",
   };
 }

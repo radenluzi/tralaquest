@@ -23,7 +23,7 @@ export function QuestJoinButton({ questId }: Props) {
         className="w-full rounded-2xl border border-white/10 px-4 py-3 font-medium disabled:opacity-70"
         disabled={pending}
       >
-        {pending ? "Ngolah..." : "Join Quest"}
+        {pending ? "Processing..." : "Join Quest"}
       </button>
       {message ? <p className="text-sm text-zinc-300">{message}</p> : null}
     </div>

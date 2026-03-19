@@ -9,7 +9,7 @@ export default function PointsPage() {
     <div className="space-y-4">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-5">
         <p className="text-sm text-zinc-400">Point Wallet</p>
-        <h2 className="mt-1 text-2xl font-bold">Total point ayeuna: 180</h2>
+        <h2 className="mt-1 text-2xl font-bold">Current points: 180</h2>
       </section>
       <section className="rounded-3xl border border-white/10 bg-white/5 p-4">
         <h3 className="font-semibold">Point Logs</h3>

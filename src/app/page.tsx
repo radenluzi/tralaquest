@@ -6,10 +6,10 @@ import { StatCard } from "@/components/stat-card";
 import { SectionCard } from "@/components/section-card";
 
 const quickMenu = [
-  { href: "/daily", title: "Daily Check-in", desc: "Bayar fee, nambah streak, meunang point." },
-  { href: "/quests", title: "Quest Board", desc: "Follow, like, recast, cast task." },
-  { href: "/ranking", title: "Leaderboard", desc: "Tempo ranking user pangaktifna." },
-  { href: "/convert", title: "Convert Point", desc: "Tukeur point kana token." },
+  { href: "/daily", title: "Daily Check-In", desc: "Pay the fee, grow your streak, and earn points." },
+  { href: "/quests", title: "Quest Board", desc: "Follow, like, recast, and complete social tasks." },
+  { href: "/ranking", title: "Leaderboard", desc: "Track the most active users in real time." },
+  { href: "/convert", title: "Convert Points", desc: "Turn points into token rewards." },
 ];
 
 export default async function Home() {
@@ -24,38 +24,38 @@ export default async function Home() {
   return (
     <div className="space-y-4">
       <section className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 p-5">
-        <p className="text-sm text-cyan-200">Wilujeng sumping deui, {currentUser?.username ?? "dek"} 👋</p>
-        <h2 className="mt-1 text-2xl font-bold">Daily grind, quest, point, convert.</h2>
+        <p className="text-sm text-cyan-200">Welcome back, {currentUser?.username ?? "player"} 👋</p>
+        <h2 className="mt-1 text-2xl font-bold">Daily grind, quests, points, and rewards.</h2>
         <p className="mt-2 text-sm text-zinc-300">
-          Cek in unggal poe make fee, kumpulkeun point, terus naek ranking.
+          Check in every day, pay the fee, complete quests, and climb the leaderboard.
         </p>
         <div className="mt-4 flex gap-2">
           <Link href="/daily" className="rounded-2xl bg-cyan-400 px-4 py-2 font-semibold text-slate-950">
-            Check-in ayeuna
+            Check In Now
           </Link>
           <Link href="/quests" className="rounded-2xl border border-white/15 px-4 py-2 font-medium">
-            Tingali quest
+            View Quests
           </Link>
         </div>
       </section>
 
       <section className="grid grid-cols-2 gap-3">
-        <StatCard label="Streak" value={`${currentUser?.streak ?? 0} poe`} />
-        <StatCard label="Point" value={`${currentUser?.total_points ?? 0}`} />
-        <StatCard label="Ranking" value={`#${currentRank}`} />
+        <StatCard label="Streak" value={`${currentUser?.streak ?? 0} days`} />
+        <StatCard label="Points" value={`${currentUser?.total_points ?? 0}`} />
+        <StatCard label="Rank" value={`#${currentRank}`} />
         <StatCard label="Fee Today" value={`${DAILY_FEE_ETH} ETH`} />
       </section>
 
       <SectionCard>
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold">Quick Status</h3>
-          <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs text-emerald-300">Supabase live</span>
+          <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs text-emerald-300">Supabase Live</span>
         </div>
         <ul className="mt-3 space-y-2 text-sm text-zinc-300">
-          <li>- Daily check-in make Supabase aktif</li>
-          <li>- Quest aktif: {quests.length}</li>
-          <li>- Total leaderboard user: {leaders.length}</li>
-          <li>- Home ayeuna geus narik point/streak/ranking live</li>
+          <li>- Daily check-in is connected to Supabase</li>
+          <li>- Active quests: {quests.length}</li>
+          <li>- Users on the leaderboard: {leaders.length}</li>
+          <li>- Home stats are now loaded from live data</li>
         </ul>
       </SectionCard>
 
