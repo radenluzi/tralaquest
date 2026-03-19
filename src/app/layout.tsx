@@ -25,6 +25,7 @@ const navItems = [
   { href: "/ranking", label: "Ranking" },
   { href: "/points", label: "Points" },
   { href: "/convert", label: "Convert" },
+  { href: "/admin", label: "Admin" },
 ];
 
 export default function RootLayout({
@@ -55,7 +56,7 @@ export default function RootLayout({
 
           <main className="flex-1">{children}</main>
 
-          <nav className="sticky bottom-0 mt-4 grid grid-cols-3 gap-2 rounded-3xl border border-white/10 bg-[#11182d]/90 p-2 backdrop-blur">
+          <nav className="sticky bottom-0 mt-4 grid grid-cols-4 gap-2 rounded-3xl border border-white/10 bg-[#11182d]/90 p-2 backdrop-blur">
             {navItems.map((item) => (
               <Link
                 key={item.href}
