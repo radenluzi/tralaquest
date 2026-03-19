@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { DAILY_FEE_ETH } from "@/lib/mock-data";
 import { getLeaderboard } from "@/lib/supabase-ranking";
 import { getActiveQuests } from "@/lib/supabase-quests";
 import { StatCard } from "@/components/stat-card";
 import { SectionCard } from "@/components/section-card";
 
 const quickMenu = [
-  { href: "/daily", title: "Daily Check-In", desc: "Pay the fee, grow your streak, and earn points." },
-  { href: "/quests", title: "Quest Board", desc: "Follow, like, recast, and complete social tasks." },
+  { href: "/daily", title: "Daily Check-In", desc: "Grow your streak and earn points every day." },
+  { href: "/quests", title: "Quest Board", desc: "Answer quiz quests and join active campaigns." },
   { href: "/ranking", title: "Leaderboard", desc: "Track the most active users in real time." },
   { href: "/convert", title: "Convert Points", desc: "Turn points into token rewards." },
 ];
@@ -25,13 +24,13 @@ export default async function Home() {
     <div className="space-y-4">
       <section className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 p-5">
         <p className="text-sm text-cyan-200">Welcome back, {currentUser?.username ?? "player"} 👋</p>
-        <h2 className="mt-1 text-2xl font-bold">Daily grind, quests, points, and rewards.</h2>
+        <h2 className="mt-1 text-2xl font-bold">Daily streak, quiz quests, points, and rewards.</h2>
         <p className="mt-2 text-sm text-zinc-300">
-          Check in every day, pay the fee, complete quests, and climb the leaderboard.
+          Check in every day, answer quests, and climb the leaderboard.
         </p>
         <div className="mt-4 flex gap-2">
           <Link href="/daily" className="rounded-2xl bg-cyan-400 px-4 py-2 font-semibold text-slate-950">
-            Check In Now
+            Check In
           </Link>
           <Link href="/quests" className="rounded-2xl border border-white/15 px-4 py-2 font-medium">
             View Quests
@@ -43,7 +42,7 @@ export default async function Home() {
         <StatCard label="Streak" value={`${currentUser?.streak ?? 0} days`} />
         <StatCard label="Points" value={`${currentUser?.total_points ?? 0}`} />
         <StatCard label="Rank" value={`#${currentRank}`} />
-        <StatCard label="Fee Today" value={`${DAILY_FEE_ETH} ETH`} />
+        <StatCard label="Active Quests" value={`${quests.length}`} />
       </section>
 
       <SectionCard>
@@ -55,7 +54,7 @@ export default async function Home() {
           <li>- Daily check-in is connected to Supabase</li>
           <li>- Active quests: {quests.length}</li>
           <li>- Users on the leaderboard: {leaders.length}</li>
-          <li>- Home stats are now loaded from live data</li>
+          <li>- Home stats are loaded from live data</li>
         </ul>
       </SectionCard>
 

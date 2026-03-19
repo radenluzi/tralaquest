@@ -1,6 +1,6 @@
 import { CheckinButton } from "@/components/checkin-button";
 import { SectionCard } from "@/components/section-card";
-import { DAILY_FEE_ETH, DAILY_REWARD_POINTS, mockUser } from "@/lib/mock-data";
+import { DAILY_REWARD_POINTS, mockUser } from "@/lib/mock-data";
 
 export default function DailyPage() {
   const checkins = [
@@ -14,15 +14,15 @@ export default function DailyPage() {
     <div className="space-y-4">
       <SectionCard className="p-5">
         <p className="text-sm text-zinc-400">Daily Check-In</p>
-        <h2 className="mt-1 text-2xl font-bold">Pay the fee and protect your streak.</h2>
+        <h2 className="mt-1 text-2xl font-bold">Keep your streak alive.</h2>
         <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
           <div className="rounded-2xl bg-white/5 p-3">
-            <p className="text-zinc-400">Today&apos;s Fee</p>
-            <p className="mt-1 font-semibold">{DAILY_FEE_ETH} ETH</p>
+            <p className="text-zinc-400">Daily reward</p>
+            <p className="mt-1 font-semibold">+{DAILY_REWARD_POINTS} points</p>
           </div>
           <div className="rounded-2xl bg-white/5 p-3">
-            <p className="text-zinc-400">Reward</p>
-            <p className="mt-1 font-semibold">+{DAILY_REWARD_POINTS} points</p>
+            <p className="text-zinc-400">Current status</p>
+            <p className="mt-1 font-semibold">Available</p>
           </div>
         </div>
         <div className="mt-4 rounded-2xl bg-white/5 p-3 text-sm text-zinc-300">
