@@ -11,7 +11,39 @@ export type QuestRow = {
   is_active: boolean;
 };
 
-export async function getActiveQuests(): Promise<QuestRow[]> {
+export type QuestTaskItem = {
+  label: string;
+  url?: string;
+};
+
+export type QuizOption = {
+  key: string;
+  text: string;
+};
+
+export type QuestViewModel = QuestRow & {
+  meta: {
+    question?: string;
+    options?: QuizOption[];
+    correctAnswer?: string;
+    followAccounts?: QuestTaskItem[];
+    likeItems?: QuestTaskItem[];
+    recastItems?: QuestTaskItem[];
+    checklist?: QuestTaskItem[];
+    castText?: string;
+  };
+};
+
+function parseMeta(description: string | null) {
+  if (!description) return {};
+  try {
+    const parsed = JSON.parse(description);
+    if (parsed && typeof parsed === "object") return parsed;
+  } catch {}
+  return {};
+}
+
+export async function getActiveQuests(): Promise<QuestViewModel[]> {
   const supabase = getSupabaseClient();
   const { data, error } = await supabase
     .from("quests")
@@ -20,7 +52,7 @@ export async function getActiveQuests(): Promise<QuestRow[]> {
     .order("created_at", { ascending: true });
 
   if (error) throw error;
-  return data ?? [];
+  return (data ?? []).map((item) => ({ ...item, meta: parseMeta(item.description) as QuestViewModel["meta"] }));
 }
 
 export async function submitQuestJoin(questId: string) {

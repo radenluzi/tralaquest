@@ -1,16 +1,53 @@
 import { getSupabaseClient } from "@/lib/supabase";
 
-export async function createQuest(input: {
+type CreateQuestInput = {
   title: string;
-  description: string;
   type: string;
   pointsReward: number;
   isDaily: boolean;
-}) {
+  question?: string;
+  optionA?: string;
+  optionB?: string;
+  optionC?: string;
+  optionD?: string;
+  correctAnswer?: string;
+  followAccounts?: string;
+  likeItems?: string;
+  recastItems?: string;
+  checklist?: string;
+  castText?: string;
+};
+
+function splitLines(raw?: string) {
+  return (raw ?? "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => ({ label: line }));
+}
+
+export async function createQuest(input: CreateQuestInput) {
   const supabase = getSupabaseClient();
+
+  const description = JSON.stringify({
+    question: input.question || undefined,
+    options: [
+      input.optionA ? { key: "A", text: input.optionA } : null,
+      input.optionB ? { key: "B", text: input.optionB } : null,
+      input.optionC ? { key: "C", text: input.optionC } : null,
+      input.optionD ? { key: "D", text: input.optionD } : null,
+    ].filter(Boolean),
+    correctAnswer: input.correctAnswer || undefined,
+    followAccounts: splitLines(input.followAccounts),
+    likeItems: splitLines(input.likeItems),
+    recastItems: splitLines(input.recastItems),
+    checklist: splitLines(input.checklist),
+    castText: input.castText || undefined,
+  });
+
   const { error } = await supabase.from("quests").insert({
     title: input.title,
-    description: input.description,
+    description,
     type: input.type,
     points_reward: input.pointsReward,
     is_daily: input.isDaily,
@@ -25,48 +62,22 @@ export async function createQuest(input: {
   };
 }
 
-export async function normalizeQuestLanguage() {
+export async function clearSeedQuests() {
   const supabase = getSupabaseClient();
-  const updates = [
-    {
-      match: "Follow akun utama",
-      title: "Follow main account",
-      description: "Follow the main campaign account",
-      type: "follow",
-      points_reward: 15,
-    },
-    {
-      match: "Like + recast post campaign",
-      title: "Like + recast campaign post",
-      description: "Like and recast the main campaign post",
-      type: "engagement",
-      points_reward: 20,
-    },
-    {
-      match: "Cast kalimat campaign",
-      title: "Publish campaign cast",
-      description: "Publish the required campaign cast",
-      type: "cast",
-      points_reward: 30,
-    },
+  const titles = [
+    "Follow akun utama",
+    "Like + recast post campaign",
+    "Cast kalimat campaign",
+    "Follow main account",
+    "Like + recast campaign post",
+    "Publish campaign cast",
   ];
 
-  for (const item of updates) {
-    const { error } = await supabase
-      .from("quests")
-      .update({
-        title: item.title,
-        description: item.description,
-        type: item.type,
-        points_reward: item.points_reward,
-      })
-      .eq("title", item.match);
-
-    if (error) throw error;
-  }
+  const { error } = await supabase.from("quests").delete().in("title", titles);
+  if (error) throw error;
 
   return {
     ok: true,
-    message: "Quest language normalized to English.",
+    message: "Default quests removed.",
   };
 }

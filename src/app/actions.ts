@@ -2,7 +2,7 @@
 
 import { runSupabaseDailyCheckin } from "@/lib/supabase-checkin";
 import { submitQuestJoin } from "@/lib/supabase-quests";
-import { createQuest, normalizeQuestLanguage } from "@/lib/supabase-admin-quests";
+import { clearSeedQuests, createQuest } from "@/lib/supabase-admin-quests";
 
 export async function submitDailyCheckin() {
   try {
@@ -32,10 +32,20 @@ export async function joinQuestAction(questId: string) {
 
 export async function createQuestAction(input: {
   title: string;
-  description: string;
   type: string;
   pointsReward: number;
   isDaily: boolean;
+  question?: string;
+  optionA?: string;
+  optionB?: string;
+  optionC?: string;
+  optionD?: string;
+  correctAnswer?: string;
+  followAccounts?: string;
+  likeItems?: string;
+  recastItems?: string;
+  checklist?: string;
+  castText?: string;
 }) {
   try {
     return await createQuest(input);
@@ -48,14 +58,14 @@ export async function createQuestAction(input: {
   }
 }
 
-export async function normalizeQuestLanguageAction() {
+export async function clearSeedQuestsAction() {
   try {
-    return await normalizeQuestLanguage();
+    return await clearSeedQuests();
   } catch (error) {
-    console.error("normalize quest language failed", error);
+    console.error("clear default quests failed", error);
     return {
       ok: false,
-      message: "Quest copy cleanup failed.",
+      message: "Failed to remove default quests.",
     };
   }
 }
